@@ -29,17 +29,15 @@ int main()
   float c_re, c_im, zr, zi;
   int iter;
   // values for c_re and c_im were found at https://en.wikipedia.org/wiki/Julia_set
-  c_re = -0.8;
-  c_im = 0.156;
+  c_re = -0.4;
+  c_im = 0.6;
   for (int y = 0; y < HEIGHT; ++y)
     {
-      for (int x = 0; x < WIDTH; ++x)
+      for (int x = WIDTH; x > 0; --x)
 	{
 	  // z^2 = zo^2 + c
 	  zr = minR + x*dr;
 	  zi = minI + y*di;
-	  //zr = (x - WIDTH/2.0)*(4.0/WIDTH);
-	  //zi = (y - HEIGHT/2.0)*(4.0/WIDTH);
 	  iter = 0;
 	  while (zr*zr+zi*zi < 4 && iter < MAX)
 	    {
