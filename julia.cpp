@@ -35,7 +35,7 @@ int main()
     {
       for (int x = WIDTH; x > 0; --x)
 	{
-	  // z^2 = zo^2 + c
+	  // z = zo^2 + c
 	  zr = minR + x*dr;
 	  zi = minI + y*di;
 	  iter = 0;

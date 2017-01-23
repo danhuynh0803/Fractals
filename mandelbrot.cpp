@@ -40,7 +40,7 @@ int main()
     {
       for (int x = 0; x < WIDTH; ++x)
 	{
-	  // z^2 = zo^2 + c
+	  // z = zo^2 + c
 	  c_re = (minR + x*dr);
 	  c_im = (minI + y*di);
 	  zr = zi = iter = 0;
