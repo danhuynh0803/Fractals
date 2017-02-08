@@ -1,5 +1,6 @@
 #include <fstream>
 #include "vec3.h"
+#include "hsv2rgb.h"
 
 const int WIDTH = 1920;
 const int HEIGHT = 1080;
@@ -7,7 +8,7 @@ const int MAX = 1000;
 
 int main()
 {
-  float maxR = 1.0, minR = -2.5;  // Define max and min range on real axis 
+  float maxR = 1.2, minR = -2.5;  // Define max and min range on real axis 
   float maxI = 1.2, minI = -1.2;  // Define max and min range on imaginary axis
   float dr = float(maxR - minR)/float(WIDTH);   // The position on real axis of each pixel
   float di = float(maxI - minI)/float(HEIGHT);  // The position on imaginary axis of each pixel
@@ -24,11 +25,8 @@ int main()
   vec3 colors[MAX];
   for (int i = 0; i < MAX; ++i)
     {
-      colors[i] = vec3(
-		       0.2f + ((float(i)/float(100) * 1.0f)),  // Red 
-		       0.2f + ((float(i)/float(100) * 0.3f)),  // Green 
-		       0.2f + ((float(i)/float(100) * 0.3f))   // Blue
-		       );
+      // (hue, saturation, value)
+      colors[i] = hsv2rgb(0.0, 0.1, 100.0 - i/(i+45.0f));
     }
   
   std::ofstream myfile;
@@ -58,6 +56,7 @@ int main()
 	      int ir = int(255.99 * colors[iter].r());
 	      int ig = int(255.99 * colors[iter].g());
 	      int ib = int(255.99 * colors[iter].b());
+
 	      myfile << ir << " " << ig << " " << ib << "\t";
 	    }
 	  else myfile << 0.0f << " " << 0.0f << " " << 0.0f << "\t";

@@ -1,5 +1,6 @@
 #include <fstream>
 #include "vec3.h"
+#include "hsv2rgb.h"
 
 const int WIDTH = 1920;
 const int HEIGHT = 1080;
@@ -16,11 +17,12 @@ int main()
   vec3 colors[MAX];
   for (int i = 0; i < MAX; ++i)
     {
-      colors[i] = vec3(
-		       0.2f + ((float(i)/float(100) * 0.6f)),  // Red 
-		       0.2f + ((float(i)/float(100) * 0.1f)),  // Green 
-		       0.2f + ((float(i)/float(100) * 0.1f))   // Blue
-		       );
+      if (i >= int(0.2*MAX))
+	colors[i] = hsv2rgb(240.0 + i/256.0f, 1, i/(i+8.0f)); // blue
+	//colors[i] = hsv2rgb(0.0, 0.0, 100.0 - i/(i + 0.8f)); // white
+      else
+	colors[i] = hsv2rgb(0.0, 0.1, 100.0 - i/(i+50.0f));
+	//colors[i] = hsv2rgb(0.0 + i/256.0f, 1, i/(i+50.0f));
     }
   
   std::ofstream myfile;
