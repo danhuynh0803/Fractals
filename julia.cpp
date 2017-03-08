@@ -71,27 +71,6 @@ int main()
   float dr = float(maxR - minR)/float(WIDTH);   // The position on real axis of each pixel
   float di = float(maxI - minI)/float(HEIGHT);  // The position on imaginary axis of each pixel
 
-  
-  vec3 colors[MAX];
-  for (int i = 0; i < MAX; ++i)
-    {
-<<<<<<< HEAD
-      if (i >= int(0.2*MAX))
-	colors[i] = hsv2rgb(240.0 + i/256.0f, 1, i/(i+8.0f)); // blue
-	//colors[i] = hsv2rgb(0.0, 0.0, 100.0 - i/(i + 0.8f)); // white
-      else
-	colors[i] = hsv2rgb(0.0, 0.1, 100.0 - i/(i+50.0f));
-	//colors[i] = hsv2rgb(0.0 + i/256.0f, 1, i/(i+50.0f));
-=======
-      
-      colors[i] = vec3(
-		       0.2f + ((float(i)/float(100) * 0.6f)),  // Red 
-		       0.2f + ((float(i)/float(100) * 0.1f)),  // Green 
-		       0.2f + ((float(i)/float(100) * 0.1f))   // Blue
-		       );
->>>>>>> gradients
-    }
-  
   std::ofstream myfile;
   myfile.open("julia.ppm");
   myfile << "P3\n" << WIDTH << " " << HEIGHT << "\n" << "255" << std::endl;
@@ -124,9 +103,6 @@ int main()
 	      int ir = color.r();
 	      int ig = color.g();
 	      int ib = color.b();
-	      // int ir = int(255.99 * colors[iter].r());
-	      // int ig = int(255.99 * colors[iter].g());
-	      // int ib = int(255.99 * colors[iter].b());
 	      myfile << ir << " " << ig << " " << ib << "\t";
 	    }
 	  else myfile << 0.0f << " " << 0.0f << " " << 0.0f << "\t";
